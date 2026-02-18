@@ -6,7 +6,7 @@
     <title>Keming Liu — Computational Neuroscience & AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,28 +15,69 @@
         }
 
         :root {
-            --forest: #1a4d2e;
-            --forest-light: #2d6943;
-            --background: #fafaf9;
-            --text: #1a1a1a;
-            --text-secondary: #666;
-            --border: #e5e5e5;
+            --forest: #1f5a38;
+            --forest-light: #2f744a;
+            --background: #f2f5ef;
+            --text: #1d201d;
+            --text-secondary: #5a615b;
+            --border: #dbe1d8;
             --card-bg: #ffffff;
+            --accent: #af7a42;
             --spacing: 8px;
+            --content-max: 1180px;
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 18px;
+            --radius-xl: 26px;
+            --shadow-soft: 0 10px 30px rgba(19, 42, 27, 0.08);
+            --shadow-hover: 0 16px 38px rgba(19, 42, 27, 0.12);
         }
 
         body {
             font-family: 'Crimson Pro', serif;
-            font-size: 18px;
-            line-height: 1.7;
+            font-size: 20px;
+            line-height: 1.72;
             color: var(--text);
-            background: var(--background);
+            background:
+                radial-gradient(circle at 10% 0%, rgba(31, 90, 56, 0.08), transparent 36%),
+                radial-gradient(circle at 92% 12%, rgba(60, 92, 71, 0.06), transparent 42%),
+                linear-gradient(150deg, rgba(175, 122, 66, 0.035), transparent 30%),
+                var(--background);
             font-weight: 300;
+            letter-spacing: 0.002em;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            filter: blur(2px);
+        }
+
+        body::before {
+            width: 340px;
+            height: 340px;
+            right: -120px;
+            top: 22vh;
+            background: radial-gradient(circle, rgba(175, 122, 66, 0.09), rgba(175, 122, 66, 0));
+        }
+
+        body::after {
+            width: 420px;
+            height: 420px;
+            left: -180px;
+            bottom: 4vh;
+            background: radial-gradient(circle, rgba(31, 90, 56, 0.12), rgba(31, 90, 56, 0));
         }
 
         .mono {
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85em;
+            font-size: 1.25rem;
             font-weight: 300;
         }
 
@@ -46,28 +87,35 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(250, 250, 249, 0.95);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--border);
+            background: transparent;
+            border-bottom: none;
+            box-shadow: none;
             z-index: 1000;
-            padding: calc(var(--spacing) * 3) 0;
+            padding: calc(var(--spacing) * 2) 0;
         }
 
         nav .container {
-            max-width: none;
+            max-width: 1360px;
             width: 100%;
             margin: 0 auto;
-            padding: 0 calc(var(--spacing) * 4);
+            padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: rgba(252, 255, 250, 0.85);
+            border: 1px solid rgba(31, 90, 56, 0.16);
+            border-radius: 999px;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 12px 26px rgba(19, 42, 27, 0.08);
         }
 
         nav .logo {
+            font-family: 'Fraunces', serif;
             font-weight: 400;
             color: var(--forest);
             text-decoration: none;
             letter-spacing: -0.02em;
+            font-size: 1.25rem;
         }
 
         nav ul {
@@ -79,17 +127,26 @@
         nav a {
             color: var(--text);
             text-decoration: none;
-            transition: color 0.2s;
-            font-size: 16px;
+            transition: color 0.22s, background-color 0.22s;
+            font-size: 20px;
+            padding: calc(var(--spacing) * 0.75) calc(var(--spacing) * 1.5);
+            border-radius: 999px;
         }
 
         nav a:hover {
             color: var(--forest);
+            background: rgba(31, 90, 56, 0.08);
+        }
+
+        nav a.is-current {
+            color: #fff;
+            background: var(--forest);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
         }
 
         /* Layout */
         .container {
-            max-width: none;
+            max-width: var(--content-max);
             width: 100%;
             margin: 0 auto;
             padding: 0 calc(var(--spacing) * 6);
@@ -100,12 +157,12 @@
         }
 
         section {
-            padding: calc(var(--spacing) * 15) 0;
+            padding: calc(var(--spacing) * 13) 0;
             min-height: 100vh;
         }
 
         section:first-of-type {
-            padding-top: calc(var(--spacing) * 20);
+            padding-top: calc(var(--spacing) * 18);
         }
 
         /* Thread decoration */
@@ -143,9 +200,10 @@
             width: 300px;
             flex-shrink: 0;
             align-self: stretch;
-            border-radius: 12px;
+            border-radius: var(--radius-lg);
             object-fit: cover;
             object-position: top center;
+            box-shadow: var(--shadow-soft);
         }
 
         .hero-text {
@@ -154,9 +212,10 @@
         }
 
         h1 {
+            font-family: 'Fraunces', serif;
             font-size: 3.5rem;
             font-weight: 300;
-            line-height: 1.1;
+            line-height: 1.07;
             letter-spacing: -0.03em;
             margin-bottom: calc(var(--spacing) * 2);
         }
@@ -169,7 +228,7 @@
         .subtitle {
             font-size: 1.3rem;
             color: var(--text-secondary);
-            max-width: 700px;
+            max-width: 48ch;
             line-height: 1.6;
         }
 
@@ -182,20 +241,23 @@
         .btn {
             padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
             border: 1px solid var(--border);
-            background: var(--card-bg);
+            background: linear-gradient(180deg, #ffffff 0%, #f5f8f2 100%);
             color: var(--text);
             text-decoration: none;
-            transition: all 0.2s;
-            font-size: 16px;
+            transition: all 0.24s;
+            font-size: 20px;
             font-family: 'Crimson Pro', serif;
             cursor: pointer;
             display: inline-block;
+            border-radius: 999px;
+            box-shadow: 0 4px 14px rgba(16, 39, 24, 0.08);
         }
 
         .btn:hover {
             border-color: var(--forest);
             background: var(--forest);
             color: white;
+            transform: translateY(-1px);
         }
 
         .btn-primary {
@@ -228,13 +290,15 @@
 
         .timeline-theme {
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: var(--radius-md);
             overflow: visible;
+            background: rgba(255, 255, 255, 0.72);
+            box-shadow: var(--shadow-soft);
         }
 
         .timeline-theme-title {
             cursor: pointer;
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             font-weight: 400;
             color: var(--forest);
             padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
@@ -259,7 +323,7 @@
         }
 
         .timeline-section h3 {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 400;
             margin-bottom: calc(var(--spacing) * 4);
             color: var(--forest);
@@ -322,26 +386,26 @@
             padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             transition: all 0.3s;
         }
 
         .timeline-node:hover .node-header,
         .timeline-node.expanded .node-header {
             border-color: var(--forest);
-            box-shadow: 0 4px 16px rgba(26, 77, 46, 0.08);
+            box-shadow: var(--shadow-soft);
         }
 
         .timeline-node .node-year {
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 1.25rem;
             color: var(--forest);
             margin-bottom: calc(var(--spacing) * 0.5);
         }
 
         .timeline-node .node-title {
             font-weight: 400;
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             color: var(--text);
         }
 
@@ -359,9 +423,9 @@
             padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
             margin-top: calc(var(--spacing) * 1);
             background: var(--background);
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             border-left: 3px solid var(--forest);
-            font-size: 0.95rem;
+            font-size: 1.25rem;
             color: var(--text-secondary);
             line-height: 1.6;
         }
@@ -382,12 +446,46 @@
             background: var(--card-bg);
             border: 1px solid var(--border);
             padding: calc(var(--spacing) * 4);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-soft);
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .focus-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--forest), var(--accent));
+            opacity: 0.35;
+        }
+
+        .focus-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            height: 100%;
+        }
+
+        .focus-card-link:focus-visible {
+            outline: none;
+        }
+
+        .focus-card-link:focus-visible .focus-card {
+            outline: 3px solid var(--forest);
+            outline-offset: 3px;
+            box-shadow: 0 0 0 5px rgba(31, 90, 56, 0.18);
         }
 
         .focus-card:hover {
             border-color: var(--forest);
-            box-shadow: 0 8px 24px rgba(26, 77, 46, 0.08);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
         }
 
         .focus-card h3 {
@@ -398,14 +496,15 @@
         }
 
         .focus-card p {
-            font-size: 0.95rem;
+            font-size: 1.25rem;
             color: var(--text-secondary);
             line-height: 1.6;
         }
 
         /* Section Headers */
         h2 {
-            font-size: 2rem;
+            font-family: 'Fraunces', serif;
+            font-size: 2.2rem;
             font-weight: 400;
             margin-bottom: calc(var(--spacing) * 6);
             letter-spacing: -0.02em;
@@ -418,9 +517,14 @@
             position: absolute;
             left: 0;
             bottom: 0;
-            width: 60px;
+            width: 92px;
             height: 1px;
-            background: var(--forest);
+            background: linear-gradient(90deg, var(--forest), var(--accent));
+        }
+
+        h3 {
+            font-family: 'Fraunces', serif;
+            letter-spacing: -0.01em;
         }
 
         /* Projects */
@@ -437,9 +541,10 @@
             background: var(--card-bg);
             cursor: pointer;
             transition: all 0.2s;
-            font-size: 0.9rem;
+            font-size: 1.25rem;
             font-family: 'IBM Plex Mono', monospace;
             user-select: none;
+            border-radius: 999px;
         }
 
         .filter-tag:hover,
@@ -465,17 +570,32 @@
             background: var(--card-bg);
             border: 1px solid var(--border);
             padding: calc(var(--spacing) * 4);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-soft);
             transition: all 0.3s;
             cursor: pointer;
             text-decoration: none;
             color: inherit;
             display: block;
             user-select: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--forest), var(--accent));
+            opacity: 0.38;
         }
 
         .project-card:hover {
             border-color: var(--forest);
-            box-shadow: 0 12px 32px rgba(26, 77, 46, 0.1);
+            box-shadow: var(--shadow-hover);
             transform: translateY(-2px);
         }
 
@@ -495,7 +615,7 @@
         .project-summary {
             color: var(--text-secondary);
             margin-bottom: calc(var(--spacing) * 3);
-            font-size: 0.95rem;
+            font-size: 1.25rem;
         }
 
         .project-tags {
@@ -508,7 +628,8 @@
             padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1.5);
             background: var(--background);
             border: 1px solid var(--border);
-            font-size: 0.75rem;
+            border-radius: 999px;
+            font-size: 1.25rem;
             font-family: 'IBM Plex Mono', monospace;
             color: var(--text-secondary);
         }
@@ -547,7 +668,9 @@
             cursor: pointer;
             z-index: 2001;
             font-family: 'Crimson Pro', serif;
-            font-size: 16px;
+            font-size: 20px;
+            border-radius: 999px;
+            box-shadow: var(--shadow-soft);
         }
 
         .close-btn:hover {
@@ -575,7 +698,7 @@
         }
 
         .project-content h4 {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 400;
             margin: calc(var(--spacing) * 6) 0 calc(var(--spacing) * 2);
             color: var(--forest);
@@ -596,6 +719,7 @@
             border-left: 2px solid var(--forest);
             padding: calc(var(--spacing) * 3);
             margin: calc(var(--spacing) * 4) 0;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
         }
 
         /* Research/Writing */
@@ -616,13 +740,30 @@
             border: 1px solid var(--border);
             padding: calc(var(--spacing) * 4);
             margin-bottom: calc(var(--spacing) * 3);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-soft);
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .research-item::before,
+        .writing-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--forest), var(--accent));
+            opacity: 0.45;
         }
 
         .research-item:hover,
         .writing-item:hover {
             border-color: var(--forest);
-            box-shadow: 0 8px 24px rgba(26, 77, 46, 0.08);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-1px);
         }
 
         .clickable-card {
@@ -635,7 +776,7 @@
             position: absolute;
             right: calc(var(--spacing) * 2);
             bottom: calc(var(--spacing) * 2);
-            font-size: 0.85rem;
+            font-size: 1.25rem;
             color: var(--forest);
             opacity: 0.65;
         }
@@ -648,7 +789,7 @@
 
         .research-item h4,
         .writing-item h4 {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 400;
             margin-bottom: calc(var(--spacing) * 1.5);
             color: var(--forest);
@@ -657,12 +798,12 @@
         .research-item p,
         .writing-item p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 1.25rem;
             line-height: 1.6;
         }
 
         .reflection-caption {
-            font-size: 0.9rem;
+            font-size: 1.25rem;
             color: var(--text-secondary);
             text-align: center;
             margin-top: calc(var(--spacing) * -2);
@@ -692,7 +833,8 @@
             max-width: 900px;
             width: 100%;
             padding: calc(var(--spacing) * 5);
-            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 24px 48px rgba(9, 19, 12, 0.16);
+            border-radius: var(--radius-md);
             position: relative;
         }
 
@@ -705,7 +847,8 @@
             padding: calc(var(--spacing)) calc(var(--spacing) * 2);
             cursor: pointer;
             font-family: 'Crimson Pro', serif;
-            font-size: 14px;
+            font-size: 20px;
+            border-radius: 999px;
         }
 
         .detail-close:hover {
@@ -739,7 +882,8 @@
             display: block;
             margin: calc(var(--spacing) * 3) auto;
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-soft);
         }
 
         /* About Section */
@@ -791,7 +935,7 @@
 
         .about-collapsible summary {
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 400;
             color: var(--forest);
             padding: calc(var(--spacing) * 2) 0;
@@ -847,6 +991,8 @@
             padding: calc(var(--spacing) * 4);
             background: var(--card-bg);
             border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-soft);
             font-style: italic;
             color: var(--text-secondary);
         }
@@ -857,17 +1003,88 @@
             padding: calc(var(--spacing) * 6) 0;
             text-align: center;
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 1.25rem;
+        }
+
+        .home-panel {
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .home-panel-title {
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: calc(var(--spacing) * 3);
+            color: var(--forest);
+        }
+
+        .home-panel-list {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin: 0;
+            padding-left: 1.25em;
+        }
+
+        .home-focus {
+            margin-top: calc(var(--spacing) * 6);
+        }
+
+        .home-focus-meta {
+            font-size: 1.25rem;
+            margin-bottom: calc(var(--spacing) * 2);
+            color: var(--text-secondary);
+        }
+
+        .hero-role {
+            font-family: 'Crimson Pro', serif;
+            font-weight: 300;
+        }
+
+        .home-highlight {
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-soft);
+            background: linear-gradient(140deg, var(--forest), #275f3f 46%, #3a6f4a 100%) !important;
+        }
+
+        .page-section.active > .container > * {
+            animation: riseIn 380ms ease both;
+        }
+
+        .page-section:not(#home).active > .container {
+            background: rgba(255, 255, 255, 0.58);
+            border: 1px solid rgba(31, 90, 56, 0.12);
+            border-radius: var(--radius-xl);
+            padding-top: calc(var(--spacing) * 5);
+            padding-bottom: calc(var(--spacing) * 5);
+            box-shadow: 0 18px 38px rgba(19, 42, 27, 0.08);
+            backdrop-filter: blur(2px);
+        }
+
+        .projects-grid,
+        .focus-grid {
+            align-items: stretch;
+        }
+
+        @keyframes riseIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.35rem;
             }
 
             .subtitle {
-                font-size: 1.1rem;
+                font-size: 1.25rem;
             }
 
             nav ul {
@@ -875,7 +1092,19 @@
             }
 
             nav a {
-                font-size: 14px;
+                font-size: 20px;
+            }
+
+            nav .container {
+                flex-wrap: wrap;
+                row-gap: calc(var(--spacing) * 1.5);
+                border-radius: var(--radius-lg);
+            }
+
+            nav ul {
+                width: 100%;
+                flex-wrap: wrap;
+                gap: calc(var(--spacing) * 1.5);
             }
 
             .projects-grid {
@@ -890,8 +1119,18 @@
                 flex-direction: column;
             }
 
+            .container {
+                padding: 0 calc(var(--spacing) * 3);
+            }
+
             section {
                 padding: calc(var(--spacing) * 10) 0;
+            }
+
+            .page-section:not(#home).active > .container {
+                border-radius: var(--radius-lg);
+                padding-top: calc(var(--spacing) * 4);
+                padding-bottom: calc(var(--spacing) * 4);
             }
         }
 
@@ -909,9 +1148,7 @@
         }
 
         .page-section.active {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            display: block;
         }
 
         #home.active {
@@ -919,10 +1156,7 @@
         }
 
         .page-section.active > .container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            display: block;
         }
 
         /* Homepage full page */
@@ -934,6 +1168,21 @@
         #home .subtitle {
             max-width: none;
         }
+
+        #home.active > .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -944,7 +1193,6 @@
             <ul>
                 <li><a href="#home" data-page="home">Home</a></li>
                 <li><a href="#projects" data-page="projects">Projects</a></li>
-                <li><a href="#research" data-page="research">Research</a></li>
                 <li><a href="#reflections" data-page="reflections">Reflections</a></li>
                 <li><a href="#about" data-page="about">About</a></li>
                 <li><a href="#contact" data-page="contact">Contact</a></li>
@@ -960,7 +1208,7 @@
                 <div class="hero-text">
                     <h1>
                         <strong>Keming Liu</strong><br>
-                        Computational Neuroscience & Interpretable AI
+                        <span class="hero-role">Computational Neuroscience & Interpretable AI</span>
                     </h1>
                     <p class="subtitle">
                         I build pipelines that turn raw neural signals into clear, actionable stories.
@@ -974,9 +1222,9 @@
             </div>
 
             <!-- Core Expertise -->
-            <div style="margin-top: calc(var(--spacing) * 8); padding: calc(var(--spacing) * 4); background: var(--card-bg); border: 1px solid var(--border);">
-                <h3 style="font-size: 1.2rem; font-weight: 400; margin-bottom: calc(var(--spacing) * 3); color: var(--forest);">Core Expertise</h3>
-                <ul style="font-size: 1rem; color: var(--text-secondary); line-height: 1.8; margin: 0; padding-left: 1.25em;">
+            <div class="home-panel" style="margin-top: calc(var(--spacing) * 8); padding: calc(var(--spacing) * 4); background: var(--card-bg); border: 1px solid var(--border);">
+                <h3 class="home-panel-title">Core Expertise</h3>
+                <ul class="home-panel-list">
                     <li>Neural signal processing (LFP, coherence, PAC)</li>
                     <li>Interpretable ML for biological data</li>
                     <li>Reproducible pipelines on HPC</li>
@@ -984,37 +1232,43 @@
             </div>
 
             <!-- Current Research Focus -->
-            <div style="margin-top: calc(var(--spacing) * 6);">
-                <h3 style="font-size: 1.2rem; font-weight: 400; margin-bottom: calc(var(--spacing) * 3); color: var(--forest);">Current Research Focus</h3>
+            <div class="home-focus" style="margin-top: calc(var(--spacing) * 6);">
+                <h3 class="home-panel-title">Current Research Focus</h3>
                 <div class="focus-grid">
-                    <div class="focus-card">
-                        <h3>VTA–PFC Oscillations</h3>
-                        <p class="mono" style="font-size: 0.8rem; margin-bottom: calc(var(--spacing) * 2);">Melón Lab, Wesleyan</p>
-                        <p>Built end-to-end pipelines for PSD, coherence, PAC, Granger causality. Discovered ethanol-induced theta–gamma coupling changes during social behavior.</p>
-                    </div>
-                    <div class="focus-card">
-                        <h3>Interpretable ML for Creativity</h3>
-                        <p class="mono" style="font-size: 0.8rem; margin-bottom: calc(var(--spacing) * 2);">Laverghetta Lab, Wesleyan</p>
-                        <p>SHAP/LOFO pipelines on HPC clusters for transformer models. Token-level attribution to identify linguistic drivers of creativity scores.</p>
-                    </div>
-                    <div class="focus-card">
-                        <h3>Deep Learning for Neural Data</h3>
-                        <p class="mono" style="font-size: 0.8rem; margin-bottom: calc(var(--spacing) * 2);">Neuromatch Academy & Personal Projects</p>
-                        <p>LSTM motor decoding, CNN-BiGRU audio classification, Steinmetz Neuropixels analysis with PyTorch architectures.</p>
-                    </div>
+                    <a href="#projects" class="focus-card-link" data-focus-project="creativity">
+                        <div class="focus-card">
+                            <h3>Interpretable ML for Creativity</h3>
+                            <p class="mono home-focus-meta">Laverghetta Lab, Wesleyan</p>
+                            <p>SHAP/LOFO pipelines on HPC clusters for transformer models. Token-level attribution to identify linguistic drivers of creativity scores.</p>
+                        </div>
+                    </a>
+                    <a href="#projects" class="focus-card-link" data-focus-project="motor">
+                        <div class="focus-card">
+                            <h3>Motor Intention Decoding</h3>
+                            <p class="mono home-focus-meta">Neuromatch Academy & Personal Projects</p>
+                            <p>LSTM motor decoding, CNN-BiGRU audio classification, Steinmetz Neuropixels analysis with PyTorch architectures.</p>
+                        </div>
+                    </a>
+                    <a href="#projects" class="focus-card-link" data-focus-project="vta-pfc">
+                        <div class="focus-card">
+                            <h3>Neural Oscillation and Social Interaction</h3>
+                            <p class="mono home-focus-meta">Melón Lab, Wesleyan</p>
+                            <p>Built end-to-end pipelines for PSD, coherence, PAC, Granger causality. Discovered ethanol-induced theta–gamma coupling changes during social behavior.</p>
+                        </div>
+                    </a>
                 </div>
             </div>
 
             <!-- Experience Overview -->
-            <div style="margin-top: calc(var(--spacing) * 8); padding: calc(var(--spacing) * 4); background: var(--card-bg); border: 1px solid var(--border);">
-                <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin: 0;">Experience across neuroscience labs, interpretable ML research, and teaching roles at Wesleyan and beyond.</p>
+            <div class="home-panel" style="margin-top: calc(var(--spacing) * 8); padding: calc(var(--spacing) * 4); background: var(--card-bg); border: 1px solid var(--border);">
+                <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.7; margin: 0;">Experience across neuroscience labs, interpretable ML research, and teaching roles at Wesleyan and beyond.</p>
             </div>
 
             <!-- What I'm Looking For -->
-            <div style="margin-top: calc(var(--spacing) * 6); padding: calc(var(--spacing) * 4); background: var(--forest); color: white;">
-                <h3 style="font-size: 1.2rem; font-weight: 400; margin-bottom: calc(var(--spacing) * 2); color: white;">Seeking Research Opportunities</h3>
+            <div class="home-highlight" style="margin-top: calc(var(--spacing) * 6); padding: calc(var(--spacing) * 4); background: var(--forest); color: white;">
+                <h3 style="font-size: 1.25rem; font-weight: 400; margin-bottom: calc(var(--spacing) * 2); color: white;">Seeking Research Opportunities</h3>
                 <p style="line-height: 1.6; margin-bottom: calc(var(--spacing) * 2);">I'm seeking research assistant or internship opportunities in computational neuroscience and AI-for-biology, especially projects combining neural data, behavior, and interpretability.</p>
-                <p style="font-size: 0.9rem; opacity: 0.9;">Graduating May 2027 • Planning graduate school in computational neuroscience</p>
+                <p style="font-size: 1.25rem; opacity: 0.9;">Graduating May 2027 • Planning graduate school in computational neuroscience</p>
             </div>
         </div>
     </section>
@@ -1034,7 +1288,7 @@
 
             <div class="projects-grid">
                 <div class="project-card" data-categories="neuro python" data-project="vta-pfc">
-                    <h3>Neural Oscillation and Social Behavior</h3>
+                    <h3>Neural Oscillation and Social Interaction</h3>
                     <p class="project-summary">Event-aligned LFP analysis revealing ethanol's selective effects on theta–gamma coupling during social behavior</p>
                     <div class="project-tags">
                         <span class="tag">Neuro</span>
@@ -1045,7 +1299,7 @@
                 </div>
 
                 <div class="project-card" data-categories="ml python" data-project="creativity">
-                    <h3>Interpretable Creativity Models</h3>
+                    <h3>Interpretable ML for Creativity</h3>
                     <p class="project-summary">SHAP and LOFO attribution analysis on HPC clusters to identify linguistic drivers of creativity scores</p>
                     <div class="project-tags">
                         <span class="tag">ML</span>
@@ -1106,7 +1360,7 @@
     <div id="project-vta-pfc" class="project-detail">
         <button class="close-btn" >← Back to Projects</button>
         <div class="project-content">
-            <h1>Neural Oscillation and Social Behavior</h1>
+            <h1>Neural Oscillation and Social Interaction</h1>
             
             <div class="highlight-box">
                 <p><strong>Problem:</strong> How does ethanol alter VTA–PFC neural coordination during social interaction?</p>
@@ -1149,7 +1403,7 @@
     <div id="project-creativity" class="project-detail">
         <button class="close-btn" >← Back to Projects</button>
         <div class="project-content">
-            <h1>Interpretable Creativity Models</h1>
+            <h1>Interpretable ML for Creativity</h1>
             
             <div class="highlight-box">
                 <p><strong>Problem:</strong> Are creativity prediction models capturing genuine linguistic patterns or statistical artifacts?</p>
@@ -1367,38 +1621,8 @@
         </div>
     </div>
 
-    <!-- Research/Writing Section -->
-    <section id="research" class="page-section">
-        <div class="container narrow">
-            <h2>Research</h2>
-
-            <div class="research-section">
-                <h3>Research Presentations</h3>
-                
-                <div class="research-item clickable-card" data-modal="modal-research-neural">
-                    <h4>Statistical Approaches for Neural Oscillation and Social Behavior Analysis</h4>
-                    <p class="mono">Summer Symposium 2025 & Research Pathway 2026, Wesleyan University</p>
-                    <p>Presented VTA–PFC LFP analysis using time-series methods, coherence, phase–amplitude coupling, and Granger causality. Demonstrated how circuit dynamics link to social behavior and ethanol intake. Audience: 200+ students and faculty.</p>
-                </div>
-
-                <div class="research-item clickable-card" data-modal="modal-research-creativity">
-                    <h4>Disentangling Creativity from Statistical Artifacts</h4>
-                    <p class="mono">Data Insights Speaker Series, March 2026, Wesleyan University</p>
-                    <p>Overview of SHAP- and LOFO-based interpretability pipelines for creativity prediction models. Discussed feature importance, model robustness, and the challenge of separating genuine patterns from artifacts in NLP-based assessments.</p>
-                </div>
-
-                <div class="research-item clickable-card" data-modal="modal-research-capsaicin">
-                    <h4>Remission of Anxiety by Capsaicin Treatment</h4>
-                    <p class="mono">Jiangsu High School Students' Science Symposium, 2022</p>
-                    <p>Poster presentation on chronic stress model and behavioral outcomes. Demonstrated link between capsaicin treatment, anxiety reduction, and oxidative stress markers in mouse brain tissue.</p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
     <section id="reflections" class="page-section">
-        <div class="container narrow">
+        <div class="container">
             <h2>Personal Reflections</h2>
 
             <div class="research-section">
@@ -1615,7 +1839,7 @@
 
     <!-- About Section -->
     <section id="about" class="page-section">
-        <div class="container narrow">
+        <div class="container">
             <h2>About</h2>
 
             <div class="about-grid">
@@ -1818,7 +2042,7 @@
             <div class="about-block thread">
                 <h3>Technical Skills, Experience & Education</h3>
                 <div style="padding-top: calc(var(--spacing) * 2);">
-                    <h4 style="font-size: 1rem; font-weight: 400; margin-bottom: calc(var(--spacing) * 2); color: var(--forest);">Skills & Tools</h4>
+                    <h4 style="font-size: 1.25rem; font-weight: 400; margin-bottom: calc(var(--spacing) * 2); color: var(--forest);">Skills & Tools</h4>
                     <p><strong>Computational Neuroscience:</strong> Neural data analysis (LFP, spike trains), oscillation analysis (PSD, PAC, coherence, Granger causality), event-based epoching</p>
                     <p><strong>Machine Learning & AI:</strong> Deep learning (MLP/CNN/RNN/LSTM), interpretability (SHAP, LOFO), representation analysis, model uncertainty & evaluation</p>
                     <p><strong>Programming:</strong> Python (NumPy, Pandas, PyTorch, SciPy, scikit-learn, HuggingFace, TensorFlow), MATLAB, Brainstorm, R, HPC (Slurm, environment optimization)</p>
@@ -1826,23 +2050,23 @@
                     <p><strong>Visualization & Design:</strong> Scientific graphics as information design, BioRender, Adobe Illustrator, poster/slide design</p>
                     <p><strong>Languages:</strong> Fluent in English and Chinese</p>
 
-                    <h4 style="font-size: 1rem; font-weight: 400; margin: calc(var(--spacing) * 4) 0 calc(var(--spacing) * 2); color: var(--forest);">Experience Snapshot</h4>
+                    <h4 style="font-size: 1.25rem; font-weight: 400; margin: calc(var(--spacing) * 4) 0 calc(var(--spacing) * 2); color: var(--forest);">Experience Snapshot</h4>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: calc(var(--spacing) * 3); margin-bottom: calc(var(--spacing) * 3);">
                         <div>
                             <p style="font-weight: 400; margin-bottom: calc(var(--spacing) * 0.5);">Research Assistant</p>
-                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Melón Lab • Laverghetta Lab • Mandalaywala Lab • Chinese Academy of Sciences</p>
+                            <p style="font-size: 1.25rem; color: var(--text-secondary);">Melón Lab • Laverghetta Lab • Mandalaywala Lab • Chinese Academy of Sciences</p>
                         </div>
                         <div>
                             <p style="font-weight: 400; margin-bottom: calc(var(--spacing) * 0.5);">Teaching & Mentoring</p>
-                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Deep Learning CA • Biology Tutor • Calculus CA • AFS Global Mentor • Women in STEM</p>
+                            <p style="font-size: 1.25rem; color: var(--text-secondary);">Deep Learning CA • Biology Tutor • Calculus CA • AFS Global Mentor • Women in STEM</p>
                         </div>
                         <div>
                             <p style="font-weight: 400; margin-bottom: calc(var(--spacing) * 0.5);">Training Programs</p>
-                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Neuromatch Academy • AI4ALL Ignite • QAC Apprenticeship • AFS STEM Academies</p>
+                            <p style="font-size: 1.25rem; color: var(--text-secondary);">Neuromatch Academy • AI4ALL Ignite • QAC Apprenticeship • AFS STEM Academies</p>
                         </div>
                         <div>
                             <p style="font-weight: 400; margin-bottom: calc(var(--spacing) * 0.5);">Education</p>
-                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Wesleyan University • Biology & Mathematics • Informatics Minor • GPA 3.93 • Class of 2027</p>
+                            <p style="font-size: 1.25rem; color: var(--text-secondary);">Wesleyan University • Biology & Mathematics • Informatics Minor • GPA 3.93 • Class of 2027</p>
                         </div>
                     </div>
                 </div>
@@ -1852,7 +2076,7 @@
                     <h3>What I'm looking for</h3>
                     <p>I'm seeking research assistant or research internship opportunities in computational neuroscience and AI-for-biology, especially projects combining neural data, behavior, and interpretability. <strong>Class of 2027—actively looking for Summer 2026 internships.</strong></p>
                     <div class="focus-areas-box" style="margin-top: calc(var(--spacing) * 3); padding: calc(var(--spacing) * 4); background: var(--background); border: 1px solid var(--border); border-radius: 8px;">
-                        <h4 style="font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace; color: var(--forest); margin-bottom: calc(var(--spacing) * 2);">Focus Areas</h4>
+                        <h4 style="font-size: 1.25rem; font-family: 'IBM Plex Mono', monospace; color: var(--forest); margin-bottom: calc(var(--spacing) * 2);">Focus Areas</h4>
                         <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: calc(var(--spacing) * 2); list-style: none; padding: 0; margin: 0;">
                             <li style="display: flex; align-items: flex-start; gap: calc(var(--spacing));"><span style="color: var(--forest);">▸</span> Neural data + behavioral or cognitive measures</li>
                             <li style="display: flex; align-items: flex-start; gap: calc(var(--spacing));"><span style="color: var(--forest);">▸</span> Building analysis pipelines from scratch</li>
@@ -1876,7 +2100,7 @@
 
     <!-- Contact Section -->
     <section id="contact" class="page-section">
-        <div class="container narrow">
+        <div class="container">
             <h2>Contact</h2>
 
             <div class="contact-info">
@@ -1919,6 +2143,13 @@
         const pages = document.querySelectorAll('.page-section');
         const allPageLinks = document.querySelectorAll('a[data-page]');
         
+        function updateNavState(pageName) {
+            allPageLinks.forEach(link => {
+                const isCurrent = link.getAttribute('data-page') === pageName;
+                link.classList.toggle('is-current', isCurrent);
+            });
+        }
+        
         function showPage(pageName) {
             // Close any open project modals first
             closeProject();
@@ -1931,7 +2162,15 @@
             const targetPage = document.getElementById(pageName);
             if (targetPage) {
                 targetPage.classList.add('active');
+                updateNavState(pageName);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                const homePage = document.getElementById('home');
+                if (homePage) {
+                    homePage.classList.add('active');
+                    updateNavState('home');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             }
         }
         
@@ -1963,6 +2202,7 @@
         // Project filtering
         const filterTags = document.querySelectorAll('.filter-tag');
         const projectCards = document.querySelectorAll('.project-card');
+        const focusProjectLinks = document.querySelectorAll('[data-focus-project]');
         
         filterTags.forEach(tag => {
             tag.addEventListener('click', (e) => {
@@ -1999,17 +2239,35 @@
             });
         });
 
+        function openProjectModal(projectId) {
+            const modal = document.getElementById(`project-${projectId}`);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Homepage focus cards -> matching project detail
+        focusProjectLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const projectId = link.getAttribute('data-focus-project');
+                showPage('projects');
+                history.pushState({ page: 'projects' }, '', '#projects');
+                if (projectId) {
+                    requestAnimationFrame(() => openProjectModal(projectId));
+                }
+            });
+        });
+
         // Project detail modal
         projectCards.forEach(card => {
             card.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 const projectId = card.getAttribute('data-project');
-                const modal = document.getElementById(`project-${projectId}`);
-                if (modal) {
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }
+                openProjectModal(projectId);
             });
         });
 
