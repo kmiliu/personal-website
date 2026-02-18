@@ -209,6 +209,12 @@
             border-color: var(--forest-light);
         }
 
+        .btn:focus-visible {
+            outline: 3px solid var(--forest);
+            outline-offset: 2px;
+            box-shadow: 0 0 0 4px rgba(26, 77, 46, 0.18);
+        }
+
         /* Interactive Timeline */
         .timeline-section {
             margin-top: calc(var(--spacing) * 10);
@@ -284,6 +290,12 @@
 
         .timeline-node:hover {
             transform: translateX(4px);
+        }
+
+        .timeline-node:focus-visible {
+            outline: 3px solid var(--forest);
+            outline-offset: 4px;
+            border-radius: 10px;
         }
 
         .timeline-node::before {
@@ -437,6 +449,12 @@
             color: white;
         }
 
+        .filter-tag:focus-visible {
+            outline: 3px solid var(--forest);
+            outline-offset: 2px;
+            box-shadow: 0 0 0 4px rgba(26, 77, 46, 0.14);
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -459,6 +477,12 @@
             border-color: var(--forest);
             box-shadow: 0 12px 32px rgba(26, 77, 46, 0.1);
             transform: translateY(-2px);
+        }
+
+        .project-card:focus-visible {
+            outline: 3px solid var(--forest);
+            outline-offset: 3px;
+            box-shadow: 0 0 0 4px rgba(26, 77, 46, 0.16);
         }
 
         .project-card h3 {
@@ -530,6 +554,13 @@
             border-color: var(--forest);
             background: var(--forest);
             color: white;
+        }
+
+        .close-btn:focus-visible,
+        .detail-close:focus-visible {
+            outline: 3px solid var(--forest);
+            outline-offset: 2px;
+            box-shadow: 0 0 0 4px rgba(26, 77, 46, 0.16);
         }
 
         .project-content {
@@ -609,6 +640,12 @@
             opacity: 0.65;
         }
 
+        .clickable-card:focus-visible {
+            outline: 3px solid var(--forest);
+            outline-offset: 3px;
+            box-shadow: 0 0 0 4px rgba(26, 77, 46, 0.14);
+        }
+
         .research-item h4,
         .writing-item h4 {
             font-size: 1.2rem;
@@ -622,6 +659,15 @@
             color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.6;
+        }
+
+        .reflection-caption {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: calc(var(--spacing) * -2);
+            margin-bottom: calc(var(--spacing) * 3);
+            font-style: italic;
         }
 
         .detail-modal {
@@ -686,47 +732,14 @@
             line-height: 1.6;
         }
 
-        .detail-modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.4);
-            display: none;
-            align-items: flex-start;
-            justify-content: center;
-            padding: calc(var(--spacing) * 6) calc(var(--spacing) * 3);
-            overflow-y: auto;
-            z-index: 1100;
-        }
-
-        .detail-modal.active {
-            display: flex;
-        }
-
-        .detail-content {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            max-width: 900px;
+        .reflection-photo {
             width: 100%;
-            padding: calc(var(--spacing) * 5);
-            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
-        }
-
-        .detail-content h1 {
-            font-size: 2rem;
-            margin-bottom: calc(var(--spacing) * 2);
-        }
-
-        .detail-content h4 {
-            margin-top: calc(var(--spacing) * 3);
-            margin-bottom: calc(var(--spacing) * 1);
-            font-weight: 400;
-            color: var(--forest);
-        }
-
-        .detail-content ul {
-            margin-left: calc(var(--spacing) * 3);
-            color: var(--text-secondary);
-            line-height: 1.6;
+            max-width: 700px;
+            height: auto;
+            display: block;
+            margin: calc(var(--spacing) * 3) auto;
+            border: 1px solid var(--border);
+            border-radius: 8px;
         }
 
         /* About Section */
@@ -954,7 +967,7 @@
                     </p>
                     <div class="cta-buttons">
                         <a href="#projects" class="btn btn-primary" data-page="projects">View Projects</a>
-                        <a href="/mnt/user-data/uploads/Liu_Keming_CV_ComBio.pdf" class="btn" download>Download CV</a>
+                        <a href="assets/cv/Liu_Keming_CV.pdf" class="btn" download>Download CV</a>
                         <a href="#contact" class="btn" data-page="contact">Get in Touch</a>
                     </div>
                 </div>
@@ -1015,33 +1028,29 @@
                 <button class="filter-tag active" data-filter="all">All</button>
                 <button class="filter-tag" data-filter="neuro">Neuro</button>
                 <button class="filter-tag" data-filter="ml">ML</button>
-                <button class="filter-tag" data-filter="lfp">LFP</button>
                 <button class="filter-tag" data-filter="python">Python</button>
-                <button class="filter-tag" data-filter="hpc">HPC</button>
                 <button class="filter-tag" data-filter="compbio">CompBio</button>
             </div>
 
             <div class="projects-grid">
-                <div class="project-card" data-categories="neuro lfp python" data-project="vta-pfc">
-                    <h3>VTA–PFC Neural Coordination</h3>
+                <div class="project-card" data-categories="neuro python" data-project="vta-pfc">
+                    <h3>Neural Oscillation and Social Behavior</h3>
                     <p class="project-summary">Event-aligned LFP analysis revealing ethanol's selective effects on theta–gamma coupling during social behavior</p>
                     <div class="project-tags">
                         <span class="tag">Neuro</span>
-                        <span class="tag">LFP</span>
                         <span class="tag">Coherence</span>
                         <span class="tag">PAC</span>
                         <span class="tag">Python</span>
                     </div>
                 </div>
 
-                <div class="project-card" data-categories="ml python hpc" data-project="creativity">
+                <div class="project-card" data-categories="ml python" data-project="creativity">
                     <h3>Interpretable Creativity Models</h3>
                     <p class="project-summary">SHAP and LOFO attribution analysis on HPC clusters to identify linguistic drivers of creativity scores</p>
                     <div class="project-tags">
                         <span class="tag">ML</span>
                         <span class="tag">SHAP</span>
                         <span class="tag">NLP</span>
-                        <span class="tag">HPC</span>
                         <span class="tag">Python</span>
                     </div>
                 </div>
@@ -1057,25 +1066,15 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-categories="neuro ml python" data-project="motor">
+                <div class="project-card" data-categories="neuro ml python compbio" data-project="motor">
                     <h3>Motor Intention Decoding</h3>
                     <p class="project-summary">LSTM networks predicting left/right movement from cortical spike trains (MOp/MOs)</p>
                     <div class="project-tags">
                         <span class="tag">Neuro</span>
                         <span class="tag">ML</span>
+                        <span class="tag">CompBio</span>
                         <span class="tag">LSTM</span>
                         <span class="tag">PyTorch</span>
-                    </div>
-                </div>
-
-                <div class="project-card" data-categories="neuro python lfp" data-project="granger">
-                    <h3>Directional Connectivity Analysis</h3>
-                    <p class="project-summary">Granger causality applied to VTA–PFC circuits with mixed-effects models for individual variability</p>
-                    <div class="project-tags">
-                        <span class="tag">Neuro</span>
-                        <span class="tag">LFP</span>
-                        <span class="tag">Granger</span>
-                        <span class="tag">Stats</span>
                     </div>
                 </div>
 
@@ -1090,23 +1089,11 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-categories="neuro ml python" data-project="steinmetz">
-                    <h3>Steinmetz Neuropixels Analysis</h3>
-                    <p class="project-summary">Single-neuron spike train extraction and deep learning architecture prototyping for neural activity prediction</p>
-                    <div class="project-tags">
-                        <span class="tag">Neuro</span>
-                        <span class="tag">ML</span>
-                        <span class="tag">PyTorch</span>
-                        <span class="tag">Big Data</span>
-                    </div>
-                </div>
-
-                <div class="project-card" data-categories="python hpc compbio" data-project="boolean">
+                <div class="project-card" data-categories="python compbio" data-project="boolean">
                     <h3>Boolean Genetic Networks</h3>
                     <p class="project-summary">Kauffman network mutation sensitivity simulations optimized for HPC clusters</p>
                     <div class="project-tags">
                         <span class="tag">CompBio</span>
-                        <span class="tag">HPC</span>
                         <span class="tag">Python</span>
                         <span class="tag">Simulation</span>
                     </div>
@@ -1119,7 +1106,7 @@
     <div id="project-vta-pfc" class="project-detail">
         <button class="close-btn" >← Back to Projects</button>
         <div class="project-content">
-            <h1>VTA–PFC Neural Coordination</h1>
+            <h1>Neural Oscillation and Social Behavior</h1>
             
             <div class="highlight-box">
                 <p><strong>Problem:</strong> How does ethanol alter VTA–PFC neural coordination during social interaction?</p>
@@ -1289,48 +1276,6 @@
         </div>
     </div>
 
-    <div id="project-granger" class="project-detail">
-        <button class="close-btn" >← Back to Projects</button>
-        <div class="project-content">
-            <h1>Directional Connectivity Analysis</h1>
-            
-            <div class="highlight-box">
-                <p><strong>Problem:</strong> What is the directional influence between VTA and PFC during social behavior?</p>
-                <p><strong>Approach:</strong> Granger causality with mixed-effects models to account for individual variability.</p>
-                <p><strong>Result:</strong> Revealed bidirectional but asymmetric influence patterns modulated by social context.</p>
-            </div>
-
-            <h4>Your Role</h4>
-            <ul>
-                <li>Applied Granger causality analysis to VTA–PFC LFP recordings</li>
-                <li>Integrated behavioral segmentation with neural time-series data</li>
-                <li>Implemented mixed-effects models to examine individual variability</li>
-                <li>Analyzed directional connectivity patterns in affect-modulated circuits</li>
-            </ul>
-
-            <h4>Methods & Tools</h4>
-            <ul>
-                <li><strong>Causal analysis:</strong> Granger causality for directional influence</li>
-                <li><strong>Statistical modeling:</strong> Mixed-effects models for individual differences</li>
-                <li><strong>Signal processing:</strong> Time-series methods, coherence analysis</li>
-                <li><strong>Tools:</strong> MATLAB, Python, statistical modeling packages</li>
-            </ul>
-
-            <h4>Integration with Behavior</h4>
-            <p class="mono">Combined neural connectivity measures with behavioral segmentation (social approach, withdrawal, exploration) to reveal context-dependent circuit dynamics. This approach allowed us to move beyond static connectivity measures to understand how VTA–PFC communication adapts to behavioral demands.</p>
-
-            <h4>Reproducibility</h4>
-            <ul>
-                <li><strong>Data:</strong> Melón Lab VTA–PFC recordings with behavioral annotation</li>
-                <li><strong>Code:</strong> MATLAB/Python scripts for Granger analysis, mixed-effects models</li>
-                <li><strong>Environment:</strong> MATLAB R2023b, Python 3.10, statsmodels</li>
-            </ul>
-
-            <h4>Next Steps & Reflection</h4>
-            <p>This work represents a natural extension of coherence and PAC analyses, adding a directional component that's crucial for understanding circuit function. The mixed-effects approach was particularly valuable for capturing individual differences—something often overlooked in group-level analyses but critical for understanding the biological heterogeneity of neural circuits.</p>
-        </div>
-    </div>
-
     <div id="project-capsaicin" class="project-detail">
         <button class="close-btn" >← Back to Projects</button>
         <div class="project-content">
@@ -1377,48 +1322,6 @@
 
             <h4>Next Steps & Reflection</h4>
             <p>This early research experience introduced me to the importance of rigorous experimental design and statistical analysis in neuroscience. It sparked my interest in understanding the biological mechanisms underlying behavioral change—a theme that continues in my current computational work on neural circuit dynamics.</p>
-        </div>
-    </div>
-
-    <div id="project-steinmetz" class="project-detail">
-        <button class="close-btn" >← Back to Projects</button>
-        <div class="project-content">
-            <h1>Steinmetz Neuropixels Analysis</h1>
-            
-            <div class="highlight-box">
-                <p><strong>Problem:</strong> Can we predict neural activity patterns from large-scale Neuropixels recordings?</p>
-                <p><strong>Approach:</strong> Extracted single-neuron trial-aligned spike trains and prototyped MLP/CNN/RNN architectures.</p>
-                <p><strong>Result:</strong> Developed robust data handling pipelines and tested multiple deep learning approaches for neural prediction.</p>
-            </div>
-
-            <h4>Your Role</h4>
-            <ul>
-                <li>Extracted single-neuron spike trains aligned to behavioral trials across multiple recording sessions</li>
-                <li>Prototyped and compared MLP, CNN, and RNN architectures for neural activity prediction</li>
-                <li>Handled large-scale neural datasets with efficient data pipelines</li>
-                <li>Evaluated model performance across different brain regions and behavioral conditions</li>
-            </ul>
-
-            <h4>Methods & Tools</h4>
-            <ul>
-                <li><strong>Data:</strong> Steinmetz et al. (2019) Neuropixels recordings across 10 mice, 39 sessions</li>
-                <li><strong>Preprocessing:</strong> Trial alignment, spike binning, neuron selection across regions</li>
-                <li><strong>Models:</strong> Multilayer Perceptrons (MLP), Convolutional Neural Networks (CNN), Recurrent Neural Networks (RNN)</li>
-                <li><strong>Tools:</strong> PyTorch, NumPy, scikit-learn, big-data handling techniques</li>
-            </ul>
-
-            <h4>Key Learnings</h4>
-            <p class="mono">Working with this large-scale dataset taught me the importance of efficient data pipelines and the challenge of scaling ML approaches to thousands of simultaneously recorded neurons. Different architectures revealed different aspects of neural coding—MLPs captured instantaneous firing patterns, while RNNs better captured temporal dynamics.</p>
-
-            <h4>Reproducibility</h4>
-            <ul>
-                <li><strong>Data:</strong> Publicly available Steinmetz et al. (2019) dataset</li>
-                <li><strong>Code:</strong> PyTorch implementations for MLP/CNN/RNN architectures</li>
-                <li><strong>Environment:</strong> Python 3.10, PyTorch, NumPy, scikit-learn</li>
-            </ul>
-
-            <h4>Next Steps & Reflection</h4>
-            <p>This project demonstrated the potential and challenges of applying deep learning to large-scale neural recordings. I'm particularly interested in how attention mechanisms and transformer architectures might better capture the distributed nature of neural population codes, and how interpretability methods (like those I use in the creativity project) could reveal what these models actually learn about neural dynamics.</p>
         </div>
     </div>
 
@@ -1499,14 +1402,14 @@
             <h2>Personal Reflections</h2>
 
             <div class="research-section">
-                <div class="writing-item clickable-card" data-modal="modal-writing-multitask">
-                    <h4>Living Multitasked, Living Alive</h4>
-                    <p>How an overload of classes, labs, work, and art turned multitasking into my default rhythm for learning.</p>
+                <div class="writing-item clickable-card" data-modal="modal-writing-pipelines">
+                    <h4>Mastering Machine</h4>
+                    <p>Turning messy neural signals into reproducible, interpretable evidence across VTA–PFC projects.</p>
                 </div>
 
-                <div class="writing-item clickable-card" data-modal="modal-writing-pipelines">
-                    <h4>Building Evidence Pipelines</h4>
-                    <p>Turning messy neural signals into reproducible, interpretable evidence across VTA–PFC projects.</p>
+                <div class="writing-item clickable-card" data-modal="modal-writing-drawing">
+                    <h4>Arts in the Flow</h4>
+                    <p>Letting go of perfectionism in art and music to rediscover creative flow.</p>
                 </div>
 
                 <div class="writing-item clickable-card" data-modal="modal-writing-teaching">
@@ -1514,19 +1417,19 @@
                     <p>Mentoring across calculus, biology, and global STEM programs as a catalyst for my own growth.</p>
                 </div>
 
-                <div class="writing-item clickable-card" data-modal="modal-writing-drawing">
-                    <h4>Drawing with the Flow</h4>
-                    <p>Letting go of perfectionism in art and music to rediscover creative flow.</p>
+                <div class="writing-item clickable-card" data-modal="modal-writing-leadership">
+                    <h4>Emotional Stability as Operational Efficiency</h4>
+                    <p>Staying calm under pressure—debugging labs and projects while keeping teammates steady.</p>
+                </div>
+
+                <div class="writing-item clickable-card" data-modal="modal-writing-multitask">
+                    <h4>Living Multitasked, Living Alive</h4>
+                    <p>How an overload of classes, labs, work, and art turned multitasking into my default rhythm for learning.</p>
                 </div>
 
                 <div class="writing-item clickable-card" data-modal="modal-writing-art">
                     <h4>When Art Sharpens Scientific Vision</h4>
                     <p>How drawing, philosophy, and art history refine the way I read and design scientific stories.</p>
-                </div>
-
-                <div class="writing-item clickable-card" data-modal="modal-writing-leadership">
-                    <h4>Collaborative Leadership & Resilience</h4>
-                    <p>Staying calm under pressure—debugging labs and projects while keeping teammates steady.</p>
                 </div>
             </div>
         </div>
@@ -1582,18 +1485,25 @@
         <div class="detail-content">
             <button class="detail-close" data-close>×</button>
             <h1>Living Multitasked, Living Alive</h1>
-            <p>Reflection on balancing eight credits across ten departments while joining dance crew, working for IMS, and pursuing independent writing projects. Multitasking becomes rhythm rather than chaos, shaping how I learn and create.</p>
+            <p>Since getting into Wesleyan, I've realized that multitasking has quietly become both my greatest challenge and my way of living.</p>
+            <p>During my first semester, I was taking eight credits across ten departments, including Biology, Chemistry, Art Studio, Music, and the College for the Study of Public Life, among others. At the same time, I joined the K-pop Dance Crew (KDC), worked for IMS, and served as a Chinese Language Partner. Beyond coursework and jobs, I also spent late nights writing a fairy-tale research paper for myself, simply because I wanted to.</p>
+            <p>In my second semester, I took seven credits, again across multiple departments, this time including QAC (Quantitative Analysis Center at Wesleyan University), COL (College of Letters, a major for the study of European literature, history, and philosophy from antiquity to the present at Wesleyan University), and DDC (Digital Design Commons at Wesleyan University). I continued dancing with KDC and working for IMS, while also mentoring for AFS and interning for an AI startup, TMind. I even tried tutoring at Traverse Square, which helped me learn that not every opportunity fits me, and that balance is just as important as ambition.</p>
+            <p>Now, my life hasn't slowed down. If anything, it's become more layered. But I've come to see multitasking not as chaos, but as rhythm. My Google Calendar, filled with color-coded classes, meetings, and projects, feels like a visual diary of my interests and curiosities. I enjoy the feeling of constantly learning, working, and creating; each task connects to a different part of who I am. Although it can be tiring, I find meaning in being busy with a purpose.</p>
+            <p>I don't think I could ever live a single-threaded life. Multitasking keeps me alert, adaptable, and alive, and it's how I explore and live in the world at the current stage.</p>
         </div>
     </div>
 
     <div id="modal-writing-pipelines" class="detail-modal">
         <div class="detail-content">
             <button class="detail-close" data-close>×</button>
-            <h1>Building Evidence Pipelines</h1>
-            <p>My technical strength lies in establishing end-to-end workflows that transform disorganized data into reproducible evidence with clear visualization. In neuroscience projects, I routinely process LFP and behavioral data from VTA–PFC circuits.</p>
-            <p><strong>Challenge → Action → Result:</strong> Raw VTA–PFC LFP data arrived with inconsistent epochs and mixed behavioral conditions. I bridged Brainstorm and MATLAB—performing frequency suppression, bandpass filtering, event-based epoch segmentation (social vs. non-social, EtOH vs. saline), and baseline correction—then conducted coherence and Granger causality analyses, distinguishing intra-area (iPAC) and inter-area (irPAC) phase-amplitude coupling. <em>Result:</em> Reproducible pipelines that translate statistical analyses into charts and conclusions supporting evidence-based arguments.</p>
-            <p><strong>Machine learning pipeline:</strong> Using PyTorch, I implement MLP prototypes to understand trade-offs between width, depth, and expressiveness. For text scoring interpretability, I combine HuggingFace and SHAP to generate token importance distributions with confidence intervals, pinpointing elements influencing model decisions and screening for potential biases.</p>
-            <blockquote class="refactor-quote">I continuously refactor fragmented scripts into parameterized, modular functions with unit tests and small-sample regression checks. Combined with Git/GitHub version control, documented README files, and maintained runtime environments, I strive for reproducibility: same raw data + same parameters = same results.</blockquote>
+            <h1>Mastering Machine</h1>
+            <img src="images/reflections/mastering-machine-1.jpg" alt="Workflow and analysis setup for neuroscience and machine learning projects" class="reflection-photo" onerror="this.style.display='none'">
+            <p>My technical strength lies in establishing an end-to-end workflow that transforms disorganized data to reproducible evidence with clear visualization. In neuroscience projects at the lab, I routinely process LFP and behavioral data from the VTA-PFC pathway, translating statistical analyses into charts and conclusions that support evidence-based arguments. Specifically for signal processing, I bridge Brainstorm and MATLAB by performing frequency/harmonic suppression and bandpass filtering, event-based epoch segmentation (e.g., social vs. non-social, EtOH vs. saline), and baseline correction, followed by PSD using Welch's method. I conduct coherence and Granger causality analyses on VTA-PFC connections, distinguishing between intra-area phase-amplitude coupling (iPAC) and inter-area phase-amplitude coupling (irPAC). Finally, a structured export of results for review and visualization in R.</p>
+            <p>I began with coursework and lab training, translating classroom statistics and signal processing knowledge into real-world data; subsequently, I participated in Neuromatch Academy's deep learning boot camp, systematically filling gaps in modeling and evaluation frameworks. In my daily research, I continuously review the literature, reproduce previous lab scripts, and refactor fragmented scripts into parameterized, modular functions (e.g., standardizing filter and epoch parameters, and unifying export fields). Combined with simple unit tests and small-sample regression checks, this ensures modifications do not break existing results. For version control, I used Git/GitHub to track changes, documented README files, and maintained runtime environments, striving for reproducibility where the same raw data and the same parameters yield the same results.</p>
+            <img src="images/reflections/mastering-machine-2.jpg" alt="Presenting Statistical Approaches for Neural Oscillation and Social Behavior Analysis project" class="reflection-photo" onerror="this.style.display='none'">
+            <p class="reflection-caption">Presenting project of Statistical Approaches for Neural Oscillation and Social Behavior Analysis in the Ventral Tegmental Area in Exley Science Center, Wesleyan University, Middletown, CT</p>
+            <p>In machine learning and interpretability, I built a small closed loop from prototype to explanation using Python: I implemented MLP classification/regression prototypes with PyTorch to understand trade-offs between width, depth, and expressiveness; For text scoring interpretability, I combined Hugging Face and SHAP to run prototypes, generating "token importance distributions + confidence intervals" to pinpoint elements influencing model decisions and preliminarily screen for potential biases.</p>
+            <p>Visualization and design represent another strength. I approach scientific graphics as information design challenges, unifying color palettes and annotation hierarchies, standardizing the presentation of axes, legends, and error bars, and controlling alignment and white space between subplots using BioRender. When necessary, I use Illustrator for final refinements to ensure posters or slides remain readable at a distance.</p>
         </div>
     </div>
 
@@ -1601,25 +1511,40 @@
         <div class="detail-content">
             <button class="detail-close" data-close>×</button>
             <h1>Where Teaching Becomes Learning</h1>
-            <p>Over the past year, I've grown through mentoring roles that span disciplines and continents. As a Course Assistant for Calculus I, I learned to explain abstract concepts visually—making rates of change and areas under curves feel intuitive. Grading for seventy students honed my patience and taught me to use feedback as a tool for growth.</p>
-            <p>As an Intro Biology Tutor, I became a bridge between complex concepts and diverse learning styles. I compare signal transduction to relay races, translate protein folding into tactile analogies. Watching students' grades improve from 67 to 96 reminds me why I teach.</p>
-            <p>Through the AFS Global STEM Mentorship program, I guide students across time zones and cultures through 12-week research projects. I've learned that mentoring isn't one-sided—it's a shared journey of mutual growth and inspiration. Teaching has become my way of solidifying understanding while helping others discover their own paths.</p>
+            <img src="images/reflections/where-teaching-becomes-learning-1.jpg" alt="Teaching and mentoring moments across disciplines" class="reflection-photo" onerror="this.style.display='none'">
+            <p>As a sophomore, over the past year, I have continued to grow in various mentoring roles spanning multiple disciplines and a global STEM program. Each experience has not only deepened my understanding of the meaning behind the saying "Teaching and learning are mutually beneficial," but has also helped me better understand myself and others.</p>
+            <p>As a Course Assistant (CA) for Calculus I, I needed to refresh my understanding of concepts such as limits and derivatives, while also learning to teach others in a simple, logical manner. During my weekly CA sessions, I noticed that students often struggled with the concepts themselves rather than the specific calculations in each problem set. Over time, I learned to explain abstract ideas visually, making concepts such as rates of change and area under curves feel more intuitive and tangible. Every time a student transitions from confusion to sudden understanding, I feel a deep sense of fulfillment as a young teacher. Grading assignments for over seventy students has honed my patience and attention to detail, and I've learned to maintain fairness and standards while using feedback to foster their growth.</p>
+            <img src="images/reflections/where-teaching-becomes-learning-2.jpg" alt="Calculus assistantship and student guidance session" class="reflection-photo" onerror="this.style.display='none'">
+            <p>When I was encouraging students to think different possible methods to solve a problem. I think of myself as a bridge when I am working for the Dean's Tutoring Program as an Intro to Biology Tutor. Working with students from diverse backgrounds and learning styles, I try to explain complex biological concepts in a more accessible manner; for instance, I could compare a signal transduction pathway to a multi-layered relay race of information transfer. I realize teaching isn't just a transfer of knowledge, but a complex process of listening and understanding. Seeing students' grades improve from a 67 to a 96 makes me feel incredibly proud.</p>
+            <p>Simultaneously, in the AFS Global STEM Mentorship international online program, I serve as a cross-cultural mentor for the first time, guiding students from diverse countries through their 12-week research exploration and graduation projects. Beyond weekly live meetings, I provide ongoing feedback in the Bridge forum to help refine their research approaches and presentation content. I learn to maintain warmth and efficiency in communication across multiple time zones and cultures. Still, I also realize that mentoring isn't one-sided: it's a shared journey of mutual growth and inspiration.</p>
         </div>
     </div>
 
     <div id="modal-writing-leadership" class="detail-modal">
         <div class="detail-content">
             <button class="detail-close" data-close>×</button>
-            <h1>Collaborative Leadership & Resilience</h1>
-            <p>Story of stabilizing teams under pressure—debugging lab equipment before deadlines and pair-programming to unblock AI project teammates. Composure and empathy as tools for technical progress.</p>
+            <h1>Emotional Stability as Operational Efficiency</h1>
+            <p>Through collaboration, I realized that one of my strengths lies in stabilizing my own emotions first, then calming the team when faced with pressure.</p>
+            <p>Once, while analyzing data in the lab, our group's equipment suddenly malfunctioned, causing the sampling signals to become erratic. With tight deadlines and limited samples, the atmosphere grew tense. Another student became visibly upset, insisting we restart the experiment. Though equally anxious, my initial reaction wasn't to blame anyone or panic over redoing the work. Instead, I swiftly checked potential sources of error. I cross-checked instrument connections, parameter settings, and backup data, ultimately pinpointing poor electrode contact as the culprit. After recalibration, we salvaged the data and avoided unnecessary duplication. In that moment, I understood that emotional stability itself is a form of efficiency for me and my collaborators.</p>
+            <p>A similar scenario unfolded in an AI group project in which I participated. We had planned weekly progress reports, but midway through, one member consistently failed to deliver code due to scheduling conflicts. Others began complaining about the delay. Instead of joining in the emotional blame, I spoke privately with that student to understand where he was stuck. I helped him debug the issue and proactively adjusted task assignments at the next meeting, allowing everyone to focus on their strongest areas. Ultimately, we successfully built the model, and that student later reintegrated into the team's rhythm.</p>
+            <p>I think I hold myself to high standards, often burning the midnight oil to refine code or polish experimental charts. Yet I have tried my best not to impose this self-imposed rigor as pressure on others.</p>
+            <p>I prefer to shape the team atmosphere through steadiness and patience. For me, composure isn't emotional absence, but a way to manage energy, allowing me to think clearly and act effectively even amid conflict and uncertainty, and always stand with my team members.</p>
         </div>
     </div>
 
     <div id="modal-writing-drawing" class="detail-modal">
         <div class="detail-content">
             <button class="detail-close" data-close>×</button>
-            <h1>Drawing with the Flow</h1>
-            <p>Learning to step back from perfectionism in art and music; embracing flow over control in drawing and jazz improvisation to unlock creativity.</p>
+            <h1>Arts in the Flow</h1>
+            <img src="images/reflections/arts-in-the-flow-1.jpg" alt="Self-portrait assignment in drawing class" class="reflection-photo" onerror="this.style.display='none'">
+            <p>When I first came to Wesleyan, I signed up for Drawing I, even though I had never done anything close to serious drawing before. I thought drawing was mostly about skill, like getting every line right, fixing mistakes, and working until the picture looked "perfect." So when our big assignment was a life-size self-portrait, I threw myself into it.</p>
+            <p>I spent hours staring at my own reflection and the huge sheet of paper in front of me, trying to capture every line of my face. Sometimes I'd erase the same section five, six times, because it didn't look exactly right. I was working so hard that I didn't even realize how tense I was, how much I was fighting with the drawing. I thought that was what "working hard" meant: keep pushing, fix every problem, and eventually it will turn out the way you want.</p>
+            <img src="images/reflections/arts-in-the-flow-2.jpg" alt="Drawing process showing flow and connected lines" class="reflection-photo" onerror="this.style.display='none'">
+            <p>One day, my professor came by, looked at what I was doing, and said softly, "It's not about how much time you spend or how many details you fix. It's about the flow of the whole drawing." That stopped me.</p>
+            <p>I stepped back and looked at the page differently. I started noticing how the lines connected, how the space felt on the paper. The drawing slowly became less stiff. It felt like it had air in it now, like it was alive.</p>
+            <img src="images/reflections/arts-in-the-flow-3.jpg" alt="Jazz vocal practice and improvisation reflection" class="reflection-photo" onerror="this.style.display='none'">
+            <p>Later, in my private jazz vocal lessons, my professor told me almost the same thing about singing: "When you improvise, stop trying to construct what you think will sound good. Let the music flow out naturally." That is, I become rigid and stiff while trying to make a harmonious chorus. At first, I didn't really understand it. I still wanted to control. I tried to plan the "right" notes. But the more I forced it, the more rigid it sounded. Only when I relaxed and trusted the music did it start to feel real and natural.</p>
+            <p>This shift made me realize that striving doesn't always mean being in control. I've always had a competitive streak, and I hate leaving things in a state of "not good enough." But now I'm starting to see that sometimes I have to loosen up first, give myself space to feel and experiment, instead of constantly chasing perfection.</p>
         </div>
     </div>
 
@@ -1627,7 +1552,11 @@
         <div class="detail-content">
             <button class="detail-close" data-close>×</button>
             <h1>When Art Sharpens Scientific Vision</h1>
-            <p>On building bridges between reason and sensibility: how drawing, philosophy, and art history refine my ability to read scientific structure and communicate data visually.</p>
+            <p>For me, interdisciplinarity isn't about mechanically grafting different fields of knowledge together; it's a mindset of building bridges between reason and emotion, science and art. I've always believed understanding the world shouldn't be linear; it requires both reasoning and feeling, both calculation and depiction.</p>
+            <p>In scientific research, I study neuroscience and computational models, analyzing the rhythms of brain signals and their connections to behavior. Scientific training has conditioned me to describe phenomena through logic, data, and causality; yet, I've gradually realized that science's language often falls short of fully expressing the complexities of life. Painting helps bridge this gap: in sketching, I must grasp how light and shadow sculpt space, and how forms extend beyond the paper's surface. This visual discipline sharpens my ability to discern structural relationships in scientific charts, teaching me how to perceive the "aesthetic of form" behind data.</p>
+            <p>Once, while designing a poster, I spent hours adjusting colors and layout to ensure viewers could grasp the flow of experimental logic within seconds. These approaches, perhaps not considered "traditional science," allowed me to discover a new sense of order in expression, an order that integrates different modes of thinking.</p>
+            <p>Philosophical studies similarly broadened my cross-disciplinary perspective. Reading Husserl, I was struck by how his descriptions of "structures of experience" mirrored neural representations. Studying art history revealed that formalist painters, like scientists, uncovered visual laws through experimentation. Scientific training equipped me with precision and validation skills, while art and philosophy taught me to remain open amidst uncertainty.</p>
+            <p>This interdisciplinary mindset has become central to my learning: I pursue aesthetic order within science and seek logical structure within art. For me, the meaning of knowledge lies not in compartmentalization, but in establishing a dialogue between reason and sensibility: it is how I understand the world and, ultimately, myself.</p>
         </div>
     </div>
 
@@ -1953,7 +1882,7 @@
             <div class="contact-info">
                 <div class="contact-item">
                     <span class="mono">Email:</span>
-                    <a href="/cdn-cgi/l/email-protection#ee8582879bdedcae998b9d828b978f80c08b8a9b"><span class="__cf_email__" data-cfemail="d8b3b4b1ade8ea98afbdabb4bda1b9b6f6bdbcad">[email&#160;protected]</span></a>
+                    <a href="mailto:kliu02@wesleyan.edu">kliu02@wesleyan.edu</a>
                 </div>
                 <div class="contact-item">
                     <span class="mono">Phone:</span>
@@ -1965,11 +1894,11 @@
                 </div>
                 <div class="contact-item">
                     <span class="mono">LinkedIn:</span>
-                    <a href="https://linkedin.com/in/keming-liu" target="_blank">linkedin.com/in/keming-liu</a>
+                    <a href="https://www.linkedin.com/in/keming-liu-profile/" target="_blank" rel="noopener noreferrer">linkedin.com/in/keming-liu-profile</a>
                 </div>
                 <div class="contact-item">
                     <span class="mono">GitHub:</span>
-                    <a href="https://github.com/keming-liu" target="_blank">github.com/keming-liu</a>
+                    <a href="https://github.com/kmiliu" target="_blank" rel="noopener noreferrer">github.com/kmiliu</a>
                 </div>
             </div>
 
@@ -1985,7 +1914,7 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Single Page Application Navigation
         const pages = document.querySelectorAll('.page-section');
         const allPageLinks = document.querySelectorAll('a[data-page]');
@@ -2095,6 +2024,27 @@
         // Research/Writing detail modals
         const detailCards = document.querySelectorAll('.clickable-card');
         const detailModals = document.querySelectorAll('.detail-modal');
+        const timelineNodes = document.querySelectorAll('.timeline-node');
+
+        function makeKeyboardClickable(elements, opensModal = false) {
+            elements.forEach(el => {
+                el.setAttribute('tabindex', '0');
+                el.setAttribute('role', 'button');
+                if (opensModal) {
+                    el.setAttribute('aria-haspopup', 'dialog');
+                }
+                el.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        el.click();
+                    }
+                });
+            });
+        }
+
+        makeKeyboardClickable(projectCards, true);
+        makeKeyboardClickable(detailCards, true);
+        makeKeyboardClickable(timelineNodes);
 
         function closeDetails() {
             detailModals.forEach(modal => modal.classList.remove('active'));
