@@ -1079,32 +1079,53 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            html {
+                font-size: 80%;
+            }
+
             h1 {
-                font-size: 2.35rem;
+                font-size: 2.1rem;
+                line-height: 1.12;
             }
 
             .subtitle {
-                font-size: 1.25rem;
+                font-size: 1.1rem;
+                max-width: 34ch;
             }
 
             nav ul {
-                gap: calc(var(--spacing) * 3);
+                gap: calc(var(--spacing) * 1.5);
             }
 
             nav a {
-                font-size: 20px;
+                font-size: 1rem;
+                padding: calc(var(--spacing) * 0.65) calc(var(--spacing) * 1.1);
             }
 
             nav .container {
                 flex-wrap: wrap;
                 row-gap: calc(var(--spacing) * 1.5);
                 border-radius: var(--radius-lg);
+                padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
             }
 
             nav ul {
                 width: 100%;
-                flex-wrap: wrap;
-                gap: calc(var(--spacing) * 1.5);
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 2px;
+            }
+
+            nav ul::-webkit-scrollbar {
+                display: none;
+            }
+
+            .hero-intro {
+                gap: calc(var(--spacing) * 3);
+            }
+
+            .hero-photo {
+                width: min(58vw, 220px);
             }
 
             .projects-grid {
@@ -1117,6 +1138,12 @@
 
             .cta-buttons {
                 flex-direction: column;
+                gap: calc(var(--spacing) * 1.5);
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+                text-align: center;
             }
 
             .container {
@@ -1124,13 +1151,57 @@
             }
 
             section {
-                padding: calc(var(--spacing) * 10) 0;
+                padding: calc(var(--spacing) * 7) 0;
             }
 
             .page-section:not(#home).active > .container {
                 border-radius: var(--radius-lg);
                 padding-top: calc(var(--spacing) * 4);
                 padding-bottom: calc(var(--spacing) * 4);
+            }
+
+            .focus-card,
+            .project-card,
+            .research-item,
+            .writing-item {
+                padding: calc(var(--spacing) * 3);
+            }
+
+            .project-detail {
+                padding: calc(var(--spacing) * 9) 0 calc(var(--spacing) * 5);
+            }
+
+            .project-content,
+            .detail-content {
+                padding: 0 calc(var(--spacing) * 2.5);
+            }
+
+            .detail-modal {
+                padding: calc(var(--spacing) * 4) calc(var(--spacing) * 1.5);
+            }
+
+            .close-btn,
+            .detail-close {
+                min-height: 44px;
+                min-width: 44px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html {
+                font-size: 75%;
+            }
+
+            .container {
+                padding: 0 calc(var(--spacing) * 2.25);
+            }
+
+            section {
+                padding: calc(var(--spacing) * 6) 0;
+            }
+
+            nav .container {
+                border-radius: var(--radius-md);
             }
         }
 
@@ -2104,11 +2175,7 @@
                 </div>
                 <div class="contact-item">
                     <span class="mono">Phone:</span>
-                    <a href="tel:860-834-1910">860-834-1910</a>
-                </div>
-                <div class="contact-item">
-                    <span class="mono">Address:</span>
-                    <span>41 Wyllys Avenue, Wes Box 92731, Middletown, CT 06459</span>
+                    <span>Available upon request</span>
                 </div>
                 <div class="contact-item">
                     <span class="mono">LinkedIn:</span>
