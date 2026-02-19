@@ -332,6 +332,8 @@
         .timeline {
             position: relative;
             padding-left: calc(var(--spacing) * 6);
+            display: flex;
+            flex-direction: column-reverse;
         }
 
         .timeline::before {
@@ -802,6 +804,15 @@
             line-height: 1.6;
         }
 
+        #reflections .research-section {
+            margin-top: calc(var(--spacing) * 4);
+            margin-bottom: calc(var(--spacing) * 10);
+        }
+
+        #reflections .writing-item {
+            margin-bottom: calc(var(--spacing) * 4);
+        }
+
         .reflection-caption {
             font-size: 1.25rem;
             color: var(--text-secondary);
@@ -1079,10 +1090,6 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            html {
-                font-size: 80%;
-            }
-
             h1 {
                 font-size: 2.1rem;
                 line-height: 1.12;
@@ -1098,7 +1105,7 @@
             }
 
             nav a {
-                font-size: 1rem;
+                font-size: 1.1rem;
                 padding: calc(var(--spacing) * 0.65) calc(var(--spacing) * 1.1);
             }
 
@@ -1122,10 +1129,13 @@
 
             .hero-intro {
                 gap: calc(var(--spacing) * 3);
+                justify-content: center;
             }
 
             .hero-photo {
                 width: min(58vw, 220px);
+                display: block;
+                margin: 0 auto;
             }
 
             .projects-grid {
@@ -1139,11 +1149,15 @@
             .cta-buttons {
                 flex-direction: column;
                 gap: calc(var(--spacing) * 1.5);
+                align-items: center;
             }
 
             .cta-buttons .btn {
-                width: 100%;
+                width: auto;
+                min-width: 220px;
                 text-align: center;
+                padding: calc(var(--spacing) * 1) calc(var(--spacing) * 2);
+                font-size: 1rem;
             }
 
             .container {
@@ -1158,6 +1172,11 @@
                 border-radius: var(--radius-lg);
                 padding-top: calc(var(--spacing) * 4);
                 padding-bottom: calc(var(--spacing) * 4);
+            }
+
+            #reflections.page-section {
+                padding-top: calc(var(--spacing) * 9);
+                padding-bottom: calc(var(--spacing) * 9);
             }
 
             .focus-card,
@@ -1188,10 +1207,6 @@
         }
 
         @media (max-width: 480px) {
-            html {
-                font-size: 75%;
-            }
-
             .container {
                 padding: 0 calc(var(--spacing) * 2.25);
             }
@@ -2113,7 +2128,7 @@
             <div class="about-block thread">
                 <h3>Technical Skills, Experience & Education</h3>
                 <div style="padding-top: calc(var(--spacing) * 2);">
-                    <h4 style="font-size: 1.25rem; font-weight: 400; margin-bottom: calc(var(--spacing) * 2); color: var(--forest);">Skills & Tools</h4>
+                    <h4 style="font-size: inherit; font-weight: 400; margin-bottom: calc(var(--spacing) * 2); color: var(--forest);">Skills & Tools</h4>
                     <p><strong>Computational Neuroscience:</strong> Neural data analysis (LFP, spike trains), oscillation analysis (PSD, PAC, coherence, Granger causality), event-based epoching</p>
                     <p><strong>Machine Learning & AI:</strong> Deep learning (MLP/CNN/RNN/LSTM), interpretability (SHAP, LOFO), representation analysis, model uncertainty & evaluation</p>
                     <p><strong>Programming:</strong> Python (NumPy, Pandas, PyTorch, SciPy, scikit-learn, HuggingFace, TensorFlow), MATLAB, Brainstorm, R, HPC (Slurm, environment optimization)</p>
@@ -2121,7 +2136,7 @@
                     <p><strong>Visualization & Design:</strong> Scientific graphics as information design, BioRender, Adobe Illustrator, poster/slide design</p>
                     <p><strong>Languages:</strong> Fluent in English and Chinese</p>
 
-                    <h4 style="font-size: 1.25rem; font-weight: 400; margin: calc(var(--spacing) * 4) 0 calc(var(--spacing) * 2); color: var(--forest);">Experience Snapshot</h4>
+                    <h4 style="font-size: inherit; font-weight: 400; margin: calc(var(--spacing) * 4) 0 calc(var(--spacing) * 2); color: var(--forest);">Experience Snapshot</h4>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: calc(var(--spacing) * 3); margin-bottom: calc(var(--spacing) * 3);">
                         <div>
                             <p style="font-weight: 400; margin-bottom: calc(var(--spacing) * 0.5);">Research Assistant</p>
