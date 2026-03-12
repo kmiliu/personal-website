@@ -670,6 +670,114 @@
             color: var(--text-secondary);
         }
 
+        /* Brand reel (home) */
+        .brand-reel {
+            margin-top: calc(var(--spacing) * 6);
+            padding: calc(var(--spacing) * 3);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .brand-reel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(1000px 420px at 10% 0%, rgba(175, 122, 66, 0.10), transparent 60%),
+                        radial-gradient(900px 420px at 95% 20%, rgba(31, 90, 56, 0.10), transparent 58%);
+            pointer-events: none;
+            opacity: 1;
+        }
+
+        .brand-reel-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: calc(var(--spacing) * 2);
+            position: relative;
+            z-index: 1;
+            margin-bottom: calc(var(--spacing) * 2);
+            flex-wrap: wrap;
+        }
+
+        .brand-reel-title {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--forest);
+        }
+
+        .brand-reel-subtitle {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            max-width: 720px;
+        }
+
+        .brand-marquee {
+            --marquee-duration: 42s;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+        }
+
+        .brand-track {
+            display: flex;
+            gap: calc(var(--spacing) * 2);
+            width: max-content;
+            animation: brand-scroll var(--marquee-duration) linear infinite;
+            padding: calc(var(--spacing) * 1) 0;
+        }
+
+        .brand-marquee:hover .brand-track {
+            animation-play-state: paused;
+        }
+
+        .brand-tile {
+            width: 220px;
+            height: 140px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            box-shadow: 0 14px 22px rgba(9, 19, 12, 0.10);
+            overflow: hidden;
+            background: var(--background);
+            transform: translateZ(0);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, filter 0.25s ease;
+            flex: 0 0 auto;
+            position: relative;
+        }
+
+        .brand-tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: saturate(1.04) contrast(1.02);
+        }
+
+        .brand-tile:hover {
+            transform: translateY(-2px) rotate(-0.35deg);
+            border-color: rgba(31, 90, 56, 0.55);
+            box-shadow: 0 22px 30px rgba(9, 19, 12, 0.16);
+            filter: saturate(1.08);
+        }
+
+        @keyframes brand-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .brand-track {
+                animation: none !important;
+            }
+        }
+
         /* Project Detail */
         .project-detail {
             display: none;
@@ -1829,6 +1937,36 @@
                 </ul>
             </div>
 
+            <!-- Experience Reel -->
+            <div class="brand-reel reveal" aria-label="Experience reel">
+                <div class="brand-reel-header">
+                    <h3 class="brand-reel-title">Experience Reel</h3>
+                    <p class="brand-reel-subtitle">A rolling strip of moments across labs, classrooms, and hackathons. Hover to pause.</p>
+                </div>
+                <div class="brand-marquee">
+                    <div class="brand-track">
+                        <div class="brand-tile"><img src="images/brand/research_pathways.png" alt="Research Pathways" loading="lazy"></div>
+                        <div class="brand-tile"><img src="images/brand/yale_healthcare_hackathon.png" alt="Yale Healthcare Hackathon" loading="lazy"></div>
+                        <div class="brand-tile"><img src="images/brand/mentor.png" alt="Mentorship" loading="lazy"></div>
+                        <div class="brand-tile"><img src="images/brand/yale_innovation.png" alt="Yale Innovation" loading="lazy"></div>
+                        <div class="brand-tile"><img src="images/brand/qac.png" alt="QAC" loading="lazy"></div>
+                        <div class="brand-tile"><img src="images/brand/math.png" alt="Math" loading="lazy"></div>
+                        <div class="brand-tile"><img src="images/brand/lab_mice.png" alt="Lab work" loading="lazy"></div>
+                        <div class="brand-tile"><img src="images/brand/summer_symposium.png" alt="Summer Symposium" loading="lazy"></div>
+
+                        <!-- Duplicate for seamless loop -->
+                        <div class="brand-tile"><img src="images/brand/research_pathways.png" alt="Research Pathways" loading="lazy"></div>
+                        <div class="brand-tile"><img src="images/brand/yale_healthcare_hackathon.png" alt="Yale Healthcare Hackathon" loading="lazy"></div>
+                        <div class="brand-tile"><img src="images/brand/mentor.png" alt="Mentorship" loading="lazy"></div>
+                        <div class="brand-tile"><img src="images/brand/yale_innovation.png" alt="Yale Innovation" loading="lazy"></div>
+                        <div class="brand-tile"><img src="images/brand/qac.png" alt="QAC" loading="lazy"></div>
+                        <div class="brand-tile"><img src="images/brand/math.png" alt="Math" loading="lazy"></div>
+                        <div class="brand-tile"><img src="images/brand/lab_mice.png" alt="Lab work" loading="lazy"></div>
+                        <div class="brand-tile"><img src="images/brand/summer_symposium.png" alt="Summer Symposium" loading="lazy"></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Current Research Focus -->
             <div class="home-focus reveal" style="margin-top: calc(var(--spacing) * 6);">
                 <h3 class="home-panel-title">Current Research Focus</h3>
@@ -1965,7 +2103,7 @@
 
                 <div class="project-card reveal" data-categories="python compbio" data-project="boolean">
                     <h3><span class="project-card-icon compbio">CB</span>Boolean Genetic Networks</h3>
-                    <p class="project-summary">Kauffman network mutation sensitivity simulations optimized for HPC clusters</p>
+                    <p class="project-summary">Kauffman network mutation sensitivity simulations on local machines with a focus on computational efficiency</p>
                     <div class="project-tags">
                         <span class="tag">CompBio</span>
                         <span class="tag">Python</span>
@@ -2319,16 +2457,16 @@
             
             <div class="highlight-box">
                 <p><strong>Problem:</strong> How sensitive are genetic regulatory networks to mutations across different attractor states?</p>
-                <p><strong>Approach:</strong> Simulated Kauffman Boolean networks with mutation sensitivity analysis optimized for HPC.</p>
-                <p><strong>Result:</strong> Revealed attractor-dependent vulnerability patterns and optimized computational performance for large-scale simulations.</p>
+                <p><strong>Approach:</strong> Simulated Kauffman Boolean networks with mutation sensitivity analysis on local machines.</p>
+                <p><strong>Result:</strong> Revealed attractor-dependent vulnerability patterns and explored computational tradeoffs for larger simulations.</p>
             </div>
 
             <h4>My Role</h4>
             <ul>
                 <li>Designed and implemented Boolean network simulations (Kauffman nets)</li>
                 <li>Developed mutation sensitivity analysis across different attractor states</li>
-                <li>Optimized memory usage and computational performance for HPC clusters</li>
-                <li>Parallelized simulations using job arrays and efficient resource allocation</li>
+                <li>Optimized memory usage and computational performance for larger local runs</li>
+                <li>Experimented with basic parallelization strategies on local hardware</li>
             </ul>
             <h4>Interactive Heatmap</h4>
             <p class="mono">Click “Simulate mutation cascade” to see how activity spreads across a small Boolean network toy example.</p>
@@ -2341,8 +2479,8 @@
             <ul>
                 <li><strong>Model:</strong> Boolean genetic regulatory networks (Kauffman networks)</li>
                 <li><strong>Analysis:</strong> Attractor identification, mutation sensitivity, robustness measures</li>
-                <li><strong>Optimization:</strong> Memory-efficient data structures, parallel processing, HPC job scheduling</li>
-                <li><strong>Tools:</strong> Python, NumPy, HPC (Slurm), computational biology modeling</li>
+                <li><strong>Optimization:</strong> Memory-efficient data structures and exploratory parallel processing on local machines</li>
+                <li><strong>Tools:</strong> Python, NumPy, computational biology modeling</li>
             </ul>
 
             <h4>Key Findings</h4>
@@ -2351,12 +2489,11 @@
             <h4>Reproducibility</h4>
             <ul>
                 <li><strong>Code:</strong> Python simulation framework with configurable network parameters</li>
-                <li><strong>HPC:</strong> Slurm job scripts, resource allocation strategies</li>
-                <li><strong>Environment:</strong> Python 3.10, NumPy, HPC cluster environment</li>
+                <li><strong>Environment:</strong> Python 3.10, NumPy, local development environment</li>
             </ul>
 
             <h4>Next Steps & Reflection</h4>
-            <p>This project taught me the importance of computational efficiency in large-scale simulations. What started as a straightforward modeling question became an exercise in optimization and parallel computing. I'm interested in extending this approach to more realistic network topologies informed by empirical gene regulatory data, and exploring how network structure shapes evolutionary dynamics.</p>
+            <p>This project taught me the importance of computational efficiency in large-scale simulations, even when running on local machines. What started as a straightforward modeling question became an exercise in thinking about optimization and potential future scaling. I'm interested in extending this approach to more realistic network topologies informed by empirical gene regulatory data, and exploring how network structure shapes evolutionary dynamics.</p>
         </div>
     </div>
 
@@ -3060,6 +3197,7 @@
             detailModals.forEach(modal => modal.classList.remove('active'));
             document.body.style.overflow = 'auto';
         }
+
 
         detailCards.forEach(card => {
             card.addEventListener('click', (e) => {
