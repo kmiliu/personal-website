@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keming Liu | Computational Neuroscience & AI</title>
+    <meta name="description" content="Keming Liu builds interpretable machine learning and computational neuroscience pipelines that turn raw neural signals into clear, actionable stories.">
+    <meta property="og:title" content="Keming Liu | Computational Neuroscience & AI">
+    <meta property="og:description" content="Projects across neural signal processing, interpretable ML, and lab experience, presented with clear problem-approach-result stories.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kmiliu.github.io/">
+    <meta property="og:image" content="https://kmiliu.github.io/assets/profile-photo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="assets/profile-photo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -734,7 +742,8 @@
             padding: calc(var(--spacing) * 1) 0;
         }
 
-        .brand-marquee:hover .brand-track {
+        .brand-marquee:hover .brand-track,
+        .brand-marquee.is-paused .brand-track {
             animation-play-state: paused;
         }
 
@@ -925,6 +934,11 @@
             opacity: 0.65;
         }
 
+        /* Align "View details" with right padding (same as cover image edge) in reflections */
+        #reflections .writing-item.clickable-card::after {
+            right: calc(var(--spacing) * 4);
+        }
+
         .clickable-card:focus-visible {
             outline: 3px solid var(--forest);
             outline-offset: 3px;
@@ -946,7 +960,7 @@
             line-height: 1.6;
         }
 
-        /* Mini charts in Current Research Focus */
+        /* Mini charts in Recent Research Projects */
         .mini-chart {
             margin-top: calc(var(--spacing) * 2);
             display: flex;
@@ -1011,6 +1025,45 @@
 
         #reflections .writing-item {
             margin-bottom: calc(var(--spacing) * 4);
+            display: flex;
+            align-items: flex-start;
+            gap: calc(var(--spacing) * 3);
+        }
+
+        #reflections .writing-item .writing-text {
+            flex: 1;
+        }
+
+        #reflections .writing-item .reflection-thumb {
+            width: 220px;
+            height: auto;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-soft);
+            flex-shrink: 0;
+        }
+
+        #reflections .writing-item h4 {
+            margin-bottom: calc(var(--spacing));
+        }
+
+        #reflections .writing-item p {
+            margin: 0;
+        }
+
+        @media (max-width: 720px) {
+            #reflections .writing-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #reflections .writing-item .reflection-thumb {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            #reflections .writing-item.clickable-card::after {
+                right: calc(var(--spacing) * 2);
+            }
         }
 
         .reflection-caption {
@@ -1595,6 +1648,30 @@
             font-size: 1.25rem;
         }
 
+        .footer-inner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: calc(var(--spacing) * 3);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: calc(var(--spacing) * 2);
+            font-size: 1.1rem;
+        }
+
+        .footer-social a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .footer-social a:hover {
+            color: var(--forest);
+            text-decoration: underline;
+        }
+
         .home-panel {
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-soft);
@@ -1941,7 +2018,7 @@
             <div class="brand-reel reveal" aria-label="Experience reel">
                 <div class="brand-reel-header">
                     <h3 class="brand-reel-title">Experience Reel</h3>
-                    <p class="brand-reel-subtitle">A rolling strip of moments across labs, classrooms, and hackathons. Hover to pause.</p>
+                    <p class="brand-reel-subtitle">A rolling strip of moments across labs, classrooms, and hackathons. Hover or tap to pause.</p>
                 </div>
                 <div class="brand-marquee">
                     <div class="brand-track">
@@ -1967,9 +2044,9 @@
                 </div>
             </div>
 
-            <!-- Current Research Focus -->
+            <!-- Recent Research Projects -->
             <div class="home-focus reveal" style="margin-top: calc(var(--spacing) * 6);">
-                <h3 class="home-panel-title">Current Research Focus</h3>
+                <h3 class="home-panel-title">Recent Research Projects</h3>
                 <div class="focus-grid">
                     <a href="#projects" class="focus-card-link" data-focus-project="creativity">
                         <div class="focus-card">
@@ -2020,7 +2097,7 @@
                 <div style="display: flex; gap: calc(var(--spacing) * 3); align-items: center; flex-wrap: wrap;">
                     <img src="images/seeking_opportunities.png"
                          alt="Cartoon illustration for research opportunities"
-                         style="width: 140px; height: auto; border-radius: var(--radius-md); box-shadow: var(--shadow-soft); flex-shrink: 0;">
+                         style="width: 280px; height: auto; border-radius: var(--radius-md); box-shadow: var(--shadow-soft); flex-shrink: 0;">
                     <div style="flex: 1; min-width: 220px;">
                         <h3 style="font-size: 1.25rem; font-weight: 400; margin-bottom: calc(var(--spacing) * 2); color: white;">Seeking Research Opportunities</h3>
                         <p style="line-height: 1.6; margin-bottom: calc(var(--spacing) * 2);">I'm seeking research assistant or internship opportunities in computational neuroscience and AI-for-biology, especially projects combining neural data, behavior, and interpretability.</p>
@@ -2503,39 +2580,51 @@
 
             <div class="research-section">
                 <div class="writing-item clickable-card reveal" data-modal="modal-writing-pipelines">
+                    <div class="writing-text">
+                        <h4>Mastering Machine</h4>
+                        <p>Turning messy neural signals into reproducible, interpretable evidence across VTA-PFC projects.</p>
+                    </div>
                     <img src="images/reflections/mastering-machine-1.jpg" alt="Mastering Machine reflection" class="reflection-thumb">
-                    <h4>Mastering Machine</h4>
-                    <p>Turning messy neural signals into reproducible, interpretable evidence across VTA-PFC projects.</p>
                 </div>
 
                 <div class="writing-item clickable-card reveal" data-modal="modal-writing-drawing">
+                    <div class="writing-text">
+                        <h4>Arts in the Flow</h4>
+                        <p>Letting go of perfectionism in art and music to rediscover creative flow.</p>
+                    </div>
                     <img src="images/reflections/arts-in-the-flow-1.jpg" alt="Arts in the Flow reflection" class="reflection-thumb">
-                    <h4>Arts in the Flow</h4>
-                    <p>Letting go of perfectionism in art and music to rediscover creative flow.</p>
                 </div>
 
                 <div class="writing-item clickable-card reveal" data-modal="modal-writing-teaching">
+                    <div class="writing-text">
+                        <h4>Where Teaching Becomes Learning</h4>
+                        <p>Mentoring across calculus, biology, and global STEM programs as a catalyst for my own growth.</p>
+                    </div>
                     <img src="images/reflections/where-teaching-becomes-learning-1.jpg" alt="Where Teaching Becomes Learning reflection" class="reflection-thumb">
-                    <h4>Where Teaching Becomes Learning</h4>
-                    <p>Mentoring across calculus, biology, and global STEM programs as a catalyst for my own growth.</p>
                 </div>
 
                 <div class="writing-item clickable-card reveal" data-modal="modal-writing-leadership">
+                    <div class="writing-text">
+                        <h4>Emotional Stability as Operational Efficiency</h4>
+                        <p>Staying calm under pressure, debugging labs and projects while keeping teammates steady.</p>
+                    </div>
                     <img src="images/reflections/teaching_scene.png" alt="Leadership and teaching scene" class="reflection-thumb">
-                    <h4>Emotional Stability as Operational Efficiency</h4>
-                    <p>Staying calm under pressure, debugging labs and projects while keeping teammates steady.</p>
                 </div>
 
                 <div class="writing-item clickable-card reveal" data-modal="modal-writing-multitask">
+                    <div class="writing-text">
+                        <h4>Living Multitasked, Living Alive</h4>
+                        <p>How an overload of classes, labs, work, and art turned multitasking into my default rhythm for learning.</p>
+                    </div>
                     <img src="images/reflections/mastering-machine-2.jpg" alt="Multitasking reflection" class="reflection-thumb">
-                    <h4>Living Multitasked, Living Alive</h4>
-                    <p>How an overload of classes, labs, work, and art turned multitasking into my default rhythm for learning.</p>
                 </div>
 
                 <div class="writing-item clickable-card reveal" data-modal="modal-writing-art">
+                    <div class="writing-text">
+                        <h4>When Art Sharpens Scientific Vision</h4>
+                        <p>How drawing, philosophy, and art history refine the way I read and design scientific stories.</p>
+                    </div>
                     <img src="images/reflections/arts-in-the-flow-3.jpg" alt="Art sharpens scientific vision reflection" class="reflection-thumb">
-                    <h4>When Art Sharpens Scientific Vision</h4>
-                    <p>How drawing, philosophy, and art history refine the way I read and design scientific stories.</p>
                 </div>
             </div>
         </div>
@@ -2745,7 +2834,7 @@
                     <div class="timeline-themes">
                         <details class="timeline-theme reveal" open>
                             <summary class="timeline-theme-title">
-                                <img src="images/icons/icon_mentoring.png" alt="" style="width:18px;height:18px;margin-right:8px;vertical-align:middle;">
+                                <img src="images/icons/icon_mentoring.png" alt="Mentorship icon" style="width:18px;height:18px;margin-right:8px;vertical-align:middle;">
                                 Mentorship
                             </summary>
                             <div class="timeline">
@@ -2819,7 +2908,7 @@
                         </details>
                         <details class="timeline-theme reveal">
                             <summary class="timeline-theme-title">
-                                <img src="images/icons/icon_research.png" alt="" style="width:18px;height:18px;margin-right:8px;vertical-align:middle;">
+                                <img src="images/icons/icon_research.png" alt="Research icon" style="width:18px;height:18px;margin-right:8px;vertical-align:middle;">
                                 Research
                             </summary>
                             <div class="timeline">
@@ -2885,7 +2974,7 @@
                         </details>
                         <details class="timeline-theme reveal">
                             <summary class="timeline-theme-title">
-                                <img src="images/icons/icon_training.png" alt="" style="width:18px;height:18px;margin-right:8px;vertical-align:middle;">
+                                <img src="images/icons/icon_training.png" alt="Training and education icon" style="width:18px;height:18px;margin-right:8px;vertical-align:middle;">
                                 Training &amp; Education
                             </summary>
                             <div class="timeline">
@@ -3023,7 +3112,13 @@
 
     <footer>
         <div class="container">
-            <p>© 2026 Keming Liu. Built with intention.</p>
+            <div class="footer-inner">
+                <p>© 2026 Keming Liu. Built with intention.</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/keming-liu-profile/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://github.com/kmiliu" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -3196,6 +3291,14 @@
         function closeDetails() {
             detailModals.forEach(modal => modal.classList.remove('active'));
             document.body.style.overflow = 'auto';
+        }
+
+        // Experience reel: tap/click to pause on touch devices
+        const brandMarquee = document.querySelector('.brand-marquee');
+        if (brandMarquee) {
+            brandMarquee.addEventListener('click', () => {
+                brandMarquee.classList.toggle('is-paused');
+            });
         }
 
 
